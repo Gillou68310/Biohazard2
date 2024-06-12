@@ -9,7 +9,7 @@ options:
   asm_path: asm/config
   src_path: src
   nonmatchings_path: nonmatchings
-  build_path: build
+  build_path: BUILD_PATH
   # create_asm_dependencies: True
   ld_script_path: ldscripts/config.ld
   find_file_boundaries: False
@@ -18,6 +18,7 @@ options:
   auto_all_sections: []
   symbol_addrs_path:
     - config/symbols.config.txt
+    - config/symbols.main.txt
   reloc_addrs_path:
     - config/relocs.config.txt
   create_undefined_funcs_auto: True

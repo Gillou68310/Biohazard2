@@ -9,7 +9,7 @@ options:
   asm_path: asm/main
   src_path: src
   nonmatchings_path: nonmatchings
-  build_path: build/
+  build_path: BUILD_PATH
   # create_asm_dependencies: True
   ld_script_path: ldscripts/main.ld
   find_file_boundaries: False
