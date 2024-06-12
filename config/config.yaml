@@ -1,0 +1,49 @@
+name: Biohazard 2 [Beta 2]
+sha1: 9ad7f6c84cca55a1bfe0b6bc7b9873bfd85057f8
+options:
+  basename: config
+  target_path: COMMON/BIN/CONFIG.BIN
+  base_path: ..
+  platform: psx
+  compiler: GCC
+  asm_path: asm/config
+  src_path: src
+  nonmatchings_path: nonmatchings
+  build_path: build
+  # create_asm_dependencies: True
+  ld_script_path: ldscripts/config.ld
+  find_file_boundaries: False
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  auto_all_sections: []
+  symbol_addrs_path:
+    - config/symbols.config.txt
+  reloc_addrs_path:
+    - config/relocs.config.txt
+  create_undefined_funcs_auto: True
+  create_undefined_syms_auto: True
+  undefined_funcs_auto_path: ldscripts/undefined_funcs_auto.config.txt
+  undefined_syms_auto_path: ldscripts/undefined_syms_auto.config.txt
+  extensions_path: tools/splat_ext
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+  ld_bss_is_noload: True
+  subalign: 4
+  #migrate_rodata_to_functions: True
+
+segments:
+  - name: main
+    type: code
+    start: 0x0
+    vram: 0x801C0118
+    align: 4
+    bss_size: 0x3310
+    subsegments:
+      - [0x0000, rodata, bio2/prog/config]
+      - [0x0094, asm, bio2/prog/config]
+      - [0x295C, data, bio2/prog/config]
+      - {start: 0x2EA0, type: bss, vram: 0x801C2FB8, name: bio2/prog/config}
+      
+  - [0x2EA0]

@@ -1,0 +1,155 @@
+name: Biohazard 2 [Beta 2]
+sha1: 96c6f7656a51bb197fdcd466fdd34b5aa70cf804
+options:
+  basename: main
+  target_path: PSX.EXE
+  base_path: ..
+  platform: psx
+  compiler: GCC
+  asm_path: asm/main
+  src_path: src
+  nonmatchings_path: nonmatchings
+  build_path: build/
+  # create_asm_dependencies: True
+  ld_script_path: ldscripts/main.ld
+  find_file_boundaries: False
+  use_legacy_include_asm: False
+  section_order: [".rodata", ".text", ".data", ".bss"]
+  auto_all_sections: []
+  symbol_addrs_path:
+    - config/symbols.main.txt
+  reloc_addrs_path:
+    - config/relocs.main.txt
+  create_undefined_funcs_auto: True
+  create_undefined_syms_auto: True
+  undefined_funcs_auto_path: ldscripts/undefined_funcs_auto.main.txt
+  undefined_syms_auto_path: ldscripts/undefined_syms_auto.main.txt
+  extensions_path: tools/splat_ext
+  string_encoding: ASCII
+  data_string_encoding: ASCII
+  rodata_string_guesser_level: 2
+  data_string_guesser_level: 2
+  ld_bss_is_noload: True
+  subalign: 4
+  #migrate_rodata_to_functions: True
+
+segments:
+  - name: header
+    type: header
+    start: 0x0
+
+  - name: psfunc
+    type: code
+    start: 0x800
+    vram: 0x80010000
+    align: 4
+    subsegments:
+      - [0x000800, asm, bio2/prog/psfunc]
+
+  - name: sub_a
+    type: code
+    start: 0xCB0
+    vram: 0x800104B0
+    align: 4
+    subsegments:
+      - [0x000CB0, asm, bio2/prog/sub_a]
+
+  - name: main
+    type: code
+    start: 0xCF8
+    vram: 0x800104F8
+    align: 4
+    bss_size: 0x242C0
+    subsegments:
+      - [0x000CF8, rodata]
+      - [0x000D40, rodata, bio2/prog/cd]
+      - [0x000D50, rodata, bio2/prog/db_menu]
+      - [0x000E04, rodata, bio2/prog/door]
+      - [0x000E40, rodata, bio2/prog/em_sub]
+      - [0x000E64, rodata, bio2/prog/em_sub2]
+      - [0x000E9C, rodata, bio2/prog/em_set]
+      - [0x000EA8, rodata, bio2/prog/esp]
+      - [0x000EB4, rodata, bio2/prog/esp_r]
+      - [0x000F50, rodata, bio2/prog/game]
+      - [0x000F8C, rodata, bio2/prog/main]
+      - [0x000FD4, rodata, bio2/prog/mojidisp]
+      - [0x001108, rodata, bio2/prog/monitor]
+      - [0x001118, rodata, bio2/prog/movie]
+      - [0x001120, rodata, bio2/prog/om]
+      - [0x0011A4, rodata, bio2/prog/oma]
+      - [0x0011AC, rodata, bio2/prog/pc_sys]
+      - [0x0011D4, rodata, bio2/prog/pc_event]
+      - [0x0014A0, rodata, bio2/prog/player]
+      - [0x0015BC, rodata, bio2/prog/pl_wep]
+      - [0x001608, rodata, bio2/prog/pl_wep2]
+      - [0x00168C, rodata, bio2/prog/room]
+      - [0x00169C, rodata, bio2/prog/sca]
+      - [0x00173C, rodata, bio2/prog/sce_at]
+      - [0x001754, rodata, bio2/prog/sce1]
+      - [0x0019F0, rodata, bio2/prog/sce2]
+      - [0x001AC0, rodata, bio2/prog/snd]
+      - [0x001B38, rodata, bio2/prog/spl]
+      - [0x001E04, rodata, bio2/prog/spl_auto]
+      - [0x001EEC, rodata, bio2/prog/spl_sce]
+      - [0x001F00, rodata, bio2/prog/spl_sp]
+      - [0x001FBC, rodata, bio2/prog/status]
+      - [0x002000, rodata, bio2/prog/st_sub00]
+      - [0x0021F8, rodata, bio2/prog/st_sub01]
+      - [0x002234, rodata, bio2/prog/st_sub02]
+      - [0x0022B0, rodata, bio2/prog/PSYQ_SDK]
+
+      - [0x002D40, asm, bio2/prog/cd]
+      - [0x003CB4, asm, bio2/prog/db_menu]
+      - [0x004A38, asm, bio2/prog/door]
+      - [0x005E84, asm, bio2/prog/em_sub]
+      - [0x00ABA4, asm, bio2/prog/em_sub2]
+      - [0x00B4FC, asm, bio2/prog/em_set]
+      - [0x00C638, asm, bio2/prog/esp]
+      - [0x00EA7C, asm, bio2/prog/esp_r]
+      - [0x015A90, asm, bio2/prog/game]
+      - [0x016F40, asm, bio2/prog/joint]
+      - [0x01B4B0, asm, bio2/prog/line_scr]
+      - [0x01B988, asm, bio2/prog/main]
+      - [0x01D640, asm, bio2/prog/md_sub]
+      - [0x01F8F8, asm, bio2/prog/mizu_sys]
+      - [0x0203A8, asm, bio2/prog/mojidisp]
+      - [0x022644, asm, bio2/prog/monitor]
+      - [0x022AD4, asm, bio2/prog/movie]
+      - [0x02432C, asm, bio2/prog/oba]
+      - [0x024CEC, asm, bio2/prog/om]
+      - [0x0264AC, asm, bio2/prog/oma]
+      - [0x028158, asm, bio2/prog/pad]
+      - [0x0284A8, asm, bio2/prog/pc_sys]
+      - [0x029668, asm, bio2/prog/pc_event]
+      - [0x02A6EC, asm, bio2/prog/player]
+      - [0x02E470, asm, bio2/prog/pl_wep]
+      - [0x0313D8, asm, bio2/prog/pl_wep2]
+      - [0x035DBC, asm, bio2/prog/poly_sub]
+      - [0x036934, asm, bio2/prog/psp]
+      - [0x036CE0, asm, bio2/prog/room]
+      - [0x037694, asm, bio2/prog/root_ck]
+      - [0x038244, asm, bio2/prog/sabun]
+      - [0x038E20, asm, bio2/prog/sca]
+      - [0x03DCE8, asm, bio2/prog/sce_at]
+      - [0x03F524, asm, bio2/prog/sce0]
+      - [0x040214, asm, bio2/prog/sce1]
+      - [0x042BFC, asm, bio2/prog/sce2]
+      - [0x044FCC, asm, bio2/prog/snd]
+      - [0x047FD0, asm, bio2/prog/spl]
+      - [0x04AF58, asm, bio2/prog/spl_auto]
+      - [0x0504A0, asm, bio2/prog/spl_sce]
+      - [0x05181C, asm, bio2/prog/spl_sp]
+      - [0x052880, asm, bio2/prog/status]
+      - [0x0547D4, asm, bio2/prog/st_sub00]
+      - [0x059278, asm, bio2/prog/st_sub01]
+      - [0x05B4A8, asm, bio2/prog/st_sub02]
+      - [0x05C4EC, asm, bio2/prog/st_sub04]
+      - [0x060108, asm, bio2/prog/sub]
+      - [0x060FB8, asm, bio2/prog/trans]
+      - [0x061B44, asm, entrypoint]
+      - [0x061C08, asm, PSYQ_SDK]
+      
+      - [0x07DDE4, data]
+      - {start: 0x0A6E38, type: bss, vram: 0x800B6638, name: 800B6638}
+      
+  - [0x0A6E38]

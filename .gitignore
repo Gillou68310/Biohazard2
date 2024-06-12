@@ -1,0 +1,7 @@
+PSX.EXE
+COMMON/
+ldscripts/
+asm/
+build/
+.vscode/
+__pycache__/
